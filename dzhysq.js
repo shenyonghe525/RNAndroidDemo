@@ -37,6 +37,7 @@ BackAndroid.addEventListener('hardwareBackPress', function () {
 var _navigator;
 var _navigatorDZHYYD;
 var _navigatorPage;
+var TitleBarView = require('./title_bar.js');
 
 /**
  * 电子会议预定
@@ -120,17 +121,6 @@ var DZHYYDModule = React.createClass({
         this.setState({pageName: pageName})
     },
 
-    _onBcakTo: function () {
-        if (_navigatorDZHYYD == null) {
-            return false;
-        }
-        if (_navigatorDZHYYD.getCurrentRoutes().length === 1) {
-            return false;
-        }
-        _navigatorDZHYYD.pop();
-        return true;
-    },
-
 });
 
 var PagesView = React.createClass(
@@ -166,7 +156,7 @@ var PagesView = React.createClass(
             if (route.id === 'wdhy') {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="我的会议"/>
+                        <TitleBarView onPress={()=> this._onBcak()} title="我的会议"/>
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
 
                         <View style={{height:1,backgroundColor:'#cccccc',marginTop: 30}}/>
@@ -215,25 +205,7 @@ var PagesView = React.createClass(
             else if (route.id === 'yydhy') {
                 return (
                     <View style={{flex:1}}>
-                        <View style={styles.barBox}>
-                            <TouchableHighlight
-                                underlayColor="rgb(210, 230, 255)"
-                                activeOpacity={0.5}
-                                onPress={()=> this._onBcakTo()}>
-                                <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                    <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                                </View>
-                            </TouchableHighlight>
-                            <Text style={styles.barTitleStyle}>已预订的会议</Text>
-                            <TouchableHighlight
-                                underlayColor="rgb(210, 230, 255)"
-                                activeOpacity={0.5}>
-                                <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                    <Image source={require('./img/actionbar_work.png')}
-                                           style={styles.imgRightStyleBar}/>
-                                </View>
-                            </TouchableHighlight>
-                        </View>
+                        <TitleBarView onPress={()=> this._onBcakTo()} title="已预订会议"/>
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
 
                         <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
@@ -269,25 +241,7 @@ var PagesView = React.createClass(
             else if (route.id === 'zzzk') {
                 return (
                     <View style={{flex:1}}>
-                        <View style={styles.barBox}>
-                            <TouchableHighlight
-                                underlayColor="rgb(210, 230, 255)"
-                                activeOpacity={0.5}
-                                onPress={()=> this._onBcakTo()}>
-                                <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                    <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                                </View>
-                            </TouchableHighlight>
-                            <Text style={styles.barTitleStyle}>正在召开的会议</Text>
-                            <TouchableHighlight
-                                underlayColor="rgb(210, 230, 255)"
-                                activeOpacity={0.5}>
-                                <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                    <Image source={require('./img/actionbar_work.png')}
-                                           style={styles.imgRightStyleBar}/>
-                                </View>
-                            </TouchableHighlight>
-                        </View>
+                        <TitleBarView onPress={()=> this._onBcakTo()} title="正在召开的会议"/>
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
                         <Text>暂无数据</Text>
                     </View>
@@ -297,25 +251,7 @@ var PagesView = React.createClass(
             else if (route.id === 'ywchy') {
                 return (
                     <View style={{flex:1}}>
-                        <View style={styles.barBox}>
-                            <TouchableHighlight
-                                underlayColor="rgb(210, 230, 255)"
-                                activeOpacity={0.5}
-                                onPress={()=> this._onBcakTo()}>
-                                <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                    <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                                </View>
-                            </TouchableHighlight>
-                            <Text style={styles.barTitleStyle}>已完成的会议</Text>
-                            <TouchableHighlight
-                                underlayColor="rgb(210, 230, 255)"
-                                activeOpacity={0.5}>
-                                <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                    <Image source={require('./img/actionbar_work.png')}
-                                           style={styles.imgRightStyleBar}/>
-                                </View>
-                            </TouchableHighlight>
-                        </View>
+                        <TitleBarView onPress={()=> this._onBcakTo()} title="已完成的会议"/>
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
 
                         <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
@@ -361,25 +297,8 @@ var PagesView = React.createClass(
             else if (route.id === 'hyxq') {
                 return (
                     <View style={{flex:1,backgroundColor:'#ffffff'}}>
-                        <View style={styles.barBox}>
-                            <TouchableHighlight
-                                underlayColor="rgb(210, 230, 255)"
-                                activeOpacity={0.5}
-                                onPress={()=> this._onBcakTo()}>
-                                <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                    <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                                </View>
-                            </TouchableHighlight>
-                            <Text style={styles.barTitleStyle}>会议详情</Text>
-                            <TouchableHighlight
-                                underlayColor="rgb(210, 230, 255)"
-                                activeOpacity={0.5}>
-                                <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                    <Image source={require('./img/actionbar_work.png')}
-                                           style={styles.imgRightStyleBar}/>
-                                </View>
-                            </TouchableHighlight>
-                        </View>
+                        <TitleBarView onPress={()=> this._onBcakTo()} title="会议详情"/>
+
                         <ScrollView showsVerticalScrollIndicator={true} style={{flex:1}}>
                             <View style={{height:1,backgroundColor:'#cccccc'}}/>
                             <View style={{backgroundColor:'#eeeeee',height:30}}>
@@ -467,7 +386,7 @@ var PagesView = React.createClass(
             if (pageName === "预定") {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="预定会议"/>
+                        <TitleBarView onPress={()=> this._onBcak()} title="预定会议"/>
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
                         <OrderNumView />
                     </View>
@@ -574,46 +493,6 @@ var PagesView = React.createClass(
 
     });
 
-
-var BarView = React.createClass(
-    {
-
-        render: function () {
-
-            return (
-                <View style={styles.barBox}>
-                    <TouchableHighlight
-                        underlayColor="rgb(210, 230, 255)"
-                        activeOpacity={0.5}
-                        onPress={()=> this._onBcak()}>
-                        <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                            <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                        </View>
-                    </TouchableHighlight>
-                    <Text style={styles.barTitleStyle}>{this.props.title}</Text>
-                    <TouchableHighlight
-                        underlayColor="rgb(210, 230, 255)"
-                        activeOpacity={0.5}>
-                        <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                            <Image source={require('./img/actionbar_work.png')} style={styles.imgRightStyleBar}/>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-
-            );
-        },
-
-        _onBcak: function () {
-            if (_navigator == null) {
-                return false;
-            }
-            if (_navigator.getCurrentRoutes().length === 1) {
-                return false;
-            }
-            _navigator.pop();
-            return true;
-        },
-    });
 
 var OrderNumView = React.createClass(
     {
@@ -862,7 +741,6 @@ var OrderNumView = React.createClass(
 
 var ChaXunView = React.createClass(
     {
-
         getInitialState: function () {
             return {
                 startText: '查询日期',
@@ -1103,10 +981,6 @@ var YWCView = React.createClass(
                 pageName: "名称",
             };
         },
-
-        isMyPage: function (menu) {
-            return menu === this.state.pageName;
-        },
         //进行创建时间日期选择器
         async showPicker(stateKey, options) {
 
@@ -1183,16 +1057,12 @@ var YWCView = React.createClass(
             _navigatorPage.pop();
             return true;
         },
-        _onChangePage: function (pageName) {
-            this.setState({pageName: pageName})
-        },
 
     });
 
 
 var YYDView = React.createClass(
     {
-
         render: function () {
             var pageName = this.props.pageName;
             if (pageName === '预订成功的会议') {

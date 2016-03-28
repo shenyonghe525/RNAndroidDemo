@@ -12,10 +12,8 @@ var {
     BackAndroid,
     TouchableHighlight,
     ScrollView,
-    TouchableOpacity,
     DatePickerAndroid,
     Navigator,
-    ListView,
     TextInput,
     Picker,
     } = React;
@@ -33,6 +31,7 @@ BackAndroid.addEventListener('hardwareBackPress', function () {
 
 var _navigator;
 var _navigatorJX;
+var TitleBarView = require('./title_bar.js');
 
 
 var JIXIAOModule = React.createClass({
@@ -73,24 +72,7 @@ var JIXIAOModule = React.createClass({
         if (route.id === 'kaoqin') {
             return (
                 <View style={styles.container}>
-                    <View style={styles.barBox}>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}
-                            onPress={()=> this._onBcak()}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                        <Text style={styles.barTitleStyle}>写汇报</Text>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_work.png')} style={styles.imgRightStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                    </View>
+                    <TitleBarView onPress={()=>this._onBcak()} title="写汇报" />
                     <View style={{height:1,backgroundColor:'#cccccc'}}/>
                     <View
                         style={{height:40,alignItems:'center',justifyContent:'center',flexDirection:'row',backgroundColor:'#ffffff'}}>

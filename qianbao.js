@@ -11,10 +11,8 @@ var {
     View,
     BackAndroid,
     TouchableHighlight,
-    TouchableOpacity,
     DatePickerAndroid,
     Navigator,
-    ListView,
     Picker,
     TextInput,
     } = React;
@@ -32,6 +30,7 @@ BackAndroid.addEventListener('hardwareBackPress', function () {
 
 var _navigator;
 var _navigatorQB;
+var TitleBarView = require('./title_bar.js');
 
 /**
  * 签报
@@ -278,7 +277,7 @@ var PagesView = React.createClass(
             if (pageNum == 1) {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="待处理文件"/>
+                        <TitleBarView onPress={()=> this._onBcak()} title="待处理文件"/>
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
 
                     </View>
@@ -288,7 +287,7 @@ var PagesView = React.createClass(
             else if (pageNum == 2) {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="签报查询"/>
+                        <TitleBarView onPress={()=> this._onBcak()} title="签报查询"/>
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
                         <View
                             style={{margin:10,height:40,flexDirection:'row',backgroundColor:'#eeeeee',borderRadius: 3}}>
@@ -356,7 +355,7 @@ var PagesView = React.createClass(
             else if (pageNum == 3) {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="授权管理"/>
+                        <TitleBarView onPress={()=> this._onBcak()} title="授权管理"/>
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
                         <View
                             style={{margin:10,height:40,flexDirection:'row',backgroundColor:'#eeeeee',borderRadius: 3}}>
@@ -433,38 +432,6 @@ var PagesView = React.createClass(
         _onChangePage1: function (pageNum) {
             this.setState({pageNum1: pageNum})
         },
-
-    });
-
-
-var BarView = React.createClass(
-    {
-
-        render: function () {
-
-            return (
-                <View style={styles.barBox}>
-                    <TouchableHighlight
-                        underlayColor="rgb(210, 230, 255)"
-                        activeOpacity={0.5}
-                        onPress={()=> this._onBcak()}>
-                        <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                            <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                        </View>
-                    </TouchableHighlight>
-                    <Text style={styles.barTitleStyle}>{this.props.title}</Text>
-                    <TouchableHighlight
-                        underlayColor="rgb(210, 230, 255)"
-                        activeOpacity={0.5}>
-                        <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                            <Image source={require('./img/actionbar_work.png')} style={styles.imgRightStyleBar}/>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-
-            );
-        },
-
         _onBcak: function () {
             if (_navigator == null) {
                 return false;
@@ -476,9 +443,7 @@ var BarView = React.createClass(
             return true;
         },
 
-
     });
-
 
 const styles = StyleSheet.create({
 

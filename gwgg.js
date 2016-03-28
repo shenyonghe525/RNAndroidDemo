@@ -12,15 +12,8 @@ var {
     BackAndroid,
     TouchableHighlight,
     TouchableOpacity,
-    DatePickerAndroid,
     Navigator,
     ListView,
-    Picker,
-    TextInput,
-    ScrollView,
-    Switch,
-    Alert,
-    ToastAndroid,
     } = React;
 
 BackAndroid.addEventListener('hardwareBackPress', function () {
@@ -36,6 +29,7 @@ BackAndroid.addEventListener('hardwareBackPress', function () {
 
 var _navigator;
 var _navigatorGG;
+var TitleBarView = require('./title_bar.js');
 
 /**
  * 公文公告模块页面
@@ -147,18 +141,6 @@ var GWGGModule = React.createClass({
     _onChangePage: function (pageName) {
         this.setState({pageName: pageName})
     },
-
-    _onBcakTo: function () {
-        if (_navigatorGG == null) {
-            return false;
-        }
-        if (_navigatorGG.getCurrentRoutes().length === 1) {
-            return false;
-        }
-        _navigatorGG.pop();
-        return true;
-    },
-
 });
 
 var PagesView = React.createClass(
@@ -197,7 +179,7 @@ var PagesView = React.createClass(
             if (pageName === "公司公文") {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="公司公文"/>
+                        <TitleBarView onPress={()=>this._onBcak()} title="公司公文" />
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
                         <ListView
                             dataSource={this.state.dataSource}
@@ -209,7 +191,7 @@ var PagesView = React.createClass(
             else if (pageName === "公司公告") {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="公司公告"/>
+                        <TitleBarView onPress={()=>this._onBcak()} title="公司公告" />
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
                         <ListView
                             dataSource={this.state.dataSource}
@@ -221,7 +203,7 @@ var PagesView = React.createClass(
             else if (pageName === '平安要闻') {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="平安要闻"/>
+                        <TitleBarView onPress={()=>this._onBcak()} title="平安新闻" />
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
                         <ListView
                             dataSource={this.state.dataSource}
@@ -233,7 +215,7 @@ var PagesView = React.createClass(
             else if (pageName === '新闻通稿') {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="新闻通稿"/>
+                        <TitleBarView onPress={()=>this._onBcak()} title="新闻通稿" />
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
                         <ListView
                             dataSource={this.state.dataSource}
@@ -245,7 +227,7 @@ var PagesView = React.createClass(
             else if (pageName === '机构动态') {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="机构动态"/>
+                        <TitleBarView onPress={()=>this._onBcak()} title="机构动态" />
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
                         <ListView
                             dataSource={this.state.dataSource}
@@ -255,37 +237,6 @@ var PagesView = React.createClass(
                 );
             }
 
-        },
-
-    });
-
-
-var BarView = React.createClass(
-    {
-
-        render: function () {
-
-            return (
-                <View style={styles.barBox}>
-                    <TouchableHighlight
-                        underlayColor="rgb(210, 230, 255)"
-                        activeOpacity={0.5}
-                        onPress={()=> this._onBcak()}>
-                        <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                            <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                        </View>
-                    </TouchableHighlight>
-                    <Text style={styles.barTitleStyle}>{this.props.title}</Text>
-                    <TouchableHighlight
-                        underlayColor="rgb(210, 230, 255)"
-                        activeOpacity={0.5}>
-                        <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                            <Image source={require('./img/actionbar_work.png')} style={styles.imgRightStyleBar}/>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-
-            );
         },
 
         _onBcak: function () {
@@ -298,6 +249,7 @@ var BarView = React.createClass(
             _navigator.pop();
             return true;
         },
+
     });
 
 const styles = StyleSheet.create({

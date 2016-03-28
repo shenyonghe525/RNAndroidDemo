@@ -29,6 +29,7 @@ BackAndroid.addEventListener('hardwareBackPress', function () {
 
 var _navigator;
 var _navigatorHD;
+var TitleBarView = require('./title_bar.js');
 
 /**
  * 员工互动区
@@ -55,24 +56,7 @@ var YGHDModule = React.createClass({
         if (route.id === 'yghd') {
             return (
                 <View style={styles.container}>
-                    <View style={styles.barBox}>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}
-                            onPress={()=> this._onBcak()}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                        <Text style={styles.barTitleStyle}>员工互动区</Text>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_work.png')} style={styles.imgRightStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                    </View>
+                    <TitleBarView onPress={()=>this._onBcak()} title="员工互动区" />
                     <View style={{height:1,backgroundColor:'#cccccc'}}/>
 
                     <TouchableHighlight
@@ -116,24 +100,7 @@ var YGHDModule = React.createClass({
         else if (route.id === 'wjdc') {
             return (
                 <View style={{flex: 1,backgroundColor: "#ffffff"}}>
-                    <View style={styles.barBox}>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}
-                            onPress={()=> this._onBcakTo()}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                        <Text style={styles.barTitleStyle}>问卷调查</Text>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_work.png')} style={styles.imgRightStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                    </View>
+                    <TitleBarView onPress={()=>this._onBcakTo()} title="调查问卷" />
                     <View style={{height:1,backgroundColor:'#cccccc'}}/>
 
                     <View style={{flexDirection:'row',height:50,backgroundColor:'#ffffff',alignItems:'center'}}>
@@ -164,24 +131,8 @@ var YGHDModule = React.createClass({
         else if (route.id === 'hltd') {
             return (
                 <View style={{flex: 1,backgroundColor: "#ffffff"}}>
-                    <View style={styles.barBox}>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}
-                            onPress={()=> this._onBcakTo()}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                        <Text style={styles.barTitleStyle}>欢乐天地</Text>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_work.png')} style={styles.imgRightStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                    </View>
+                    <TitleBarView onPress={()=>this._onBcakTo()} title="欢乐天地" />
+
                     <View style={{height:1,backgroundColor:'#cccccc'}}/>
                     <Image source={require('./img/youxi.png')} style={{flex:1,resizeMode:'cover'}}/>
                 </View>

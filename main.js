@@ -52,7 +52,7 @@ var MainView = React.createClass({
     },
 
     configureScenceAndroid: function () {
-        return Navigator.SceneConfigs.FadeAndroid;
+        return Navigator.SceneConfigs.FloatFromBottom;
     },
 
     renderSceneAndroid: function (route, navigator) {
@@ -237,12 +237,11 @@ var MainView = React.createClass({
 
     render: function () {
         var renderScene = this.renderSceneAndroid;
-        var configureScence = this.configureScenceAndroid;
         return (
             <Navigator
                 debugOverlay={false}
                 initialRoute={{ title: 'Main', id:'main'}}
-                configureScence={{ configureScence }}
+                configureScence={() => Navigator.SceneConfigs.FadeAndroid}
                 renderScene={renderScene}
             />
         );
@@ -439,7 +438,7 @@ var SettingView = React.createClass(
             return (
                 <View style={{flex:1,backgroundColor:'#ffffff'}}>
                     <View style={styles.barBox}>
-                        <Text style={styles.bigTxtStyle}>个人中心</Text>
+                        <Text style={styles.barTxtStyle}>个人中心</Text>
                     </View>
                     <View style={styles.itemLineStyle}/>
                     <ScrollView showsVerticalScrollIndicator={true} style={{flex:1}}>

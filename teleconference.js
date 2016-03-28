@@ -11,11 +11,7 @@ var {
     View,
     BackAndroid,
     TouchableHighlight,
-    TouchableOpacity,
-    DatePickerAndroid,
     Navigator,
-    ListView,
-    Picker,
     TextInput,
     ScrollView,
     Switch,
@@ -36,6 +32,7 @@ BackAndroid.addEventListener('hardwareBackPress', function () {
 
 var _navigator;
 var _navigatorTF;
+var TitleBarView = require('./title_bar.js');
 
 /**
  * 电话会议
@@ -565,7 +562,7 @@ var PagesView = React.createClass(
             if (pageName === "历史会议") {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="历史会议"/>
+                        <TitleBarView onPress={()=>this._onBcak()} title="历史会议" />
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
                     </View>
 
@@ -574,7 +571,7 @@ var PagesView = React.createClass(
             else if (pageName === "召开会议") {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="召开会议"/>
+                        <TitleBarView onPress={()=>this._onBcak()} title="召开会议" />
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
                         <View style={{height:40,flexDirection:'row',justifyContent:'center',}}>
                             <View style={{marginLeft:10,height:40,width:40,flexDirection:'row',alignItems:'center',
@@ -654,7 +651,7 @@ var PagesView = React.createClass(
             else if (pageName === '我的会议') {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="我的会议"/>
+                        <TitleBarView onPress={()=>this._onBcak()} title="我的会议" />
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
                         <View style={{height:40,backgroundColor:'#ffffff',flexDirection:'row',alignItems: 'center',}}>
                             <TouchableHighlight
@@ -686,7 +683,7 @@ var PagesView = React.createClass(
             else if (pageName === '系统管理') {
                 return (
                     <View style={{flex:1}}>
-                        <BarView title="系统管理"/>
+                        <TitleBarView onPress={()=>this._onBcak()} title="系统管理" />
                         <View style={{height:1,backgroundColor:'#cccccc'}}/>
                         <View style={{height:50,backgroundColor:'#ffffff',alignItems:'center',
                                      flexDirection:'row'}}>
@@ -796,38 +793,6 @@ var PagesView = React.createClass(
         _onChangePage: function (pageName) {
             this.setState({pageName: pageName})
         },
-
-    });
-
-
-var BarView = React.createClass(
-    {
-
-        render: function () {
-
-            return (
-                <View style={styles.barBox}>
-                    <TouchableHighlight
-                        underlayColor="rgb(210, 230, 255)"
-                        activeOpacity={0.5}
-                        onPress={()=> this._onBcak()}>
-                        <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                            <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                        </View>
-                    </TouchableHighlight>
-                    <Text style={styles.barTitleStyle}>{this.props.title}</Text>
-                    <TouchableHighlight
-                        underlayColor="rgb(210, 230, 255)"
-                        activeOpacity={0.5}>
-                        <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                            <Image source={require('./img/actionbar_work.png')} style={styles.imgRightStyleBar}/>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-
-            );
-        },
-
         _onBcak: function () {
             if (_navigator == null) {
                 return false;
@@ -838,6 +803,7 @@ var BarView = React.createClass(
             _navigator.pop();
             return true;
         },
+
     });
 
 const styles = StyleSheet.create({

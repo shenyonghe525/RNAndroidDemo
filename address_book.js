@@ -13,11 +13,9 @@ var {
     TouchableHighlight,
     ScrollView,
     TouchableOpacity,
-    DatePickerAndroid,
     Navigator,
     ListView,
     TextInput,
-    Picker,
     } = React;
 
 BackAndroid.addEventListener('hardwareBackPress', function () {
@@ -33,6 +31,7 @@ BackAndroid.addEventListener('hardwareBackPress', function () {
 
 var _navigator;
 var _navigatorAB;
+var TitleBarView = require('./title_bar.js');
 
 /**
  * 企业通讯录
@@ -71,24 +70,7 @@ var AddressBookModule = React.createClass({
         if (route.id === 'adressbook') {
             return (
                 <View style={styles.container}>
-                    <View style={styles.barBox}>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}
-                            onPress={()=> this._onBcak()}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                        <Text style={styles.barTitleStyle}>企业通讯录</Text>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_work.png')} style={styles.imgRightStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                    </View>
+                    <TitleBarView onPress={()=>this._onBcak()} title="企业通讯录" />
                     <View style={{height:1,backgroundColor:'#cccccc'}}/>
                     <TextInput
                         style={{height:40,backgroundColor:'#ffffff',margin:10}}
@@ -112,26 +94,7 @@ var AddressBookModule = React.createClass({
         else if (route.id === 'grxx') {
             return (
                 <View style={styles.container}>
-
-                    <View style={styles.barBox}>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}
-                            onPress={()=> this._onBcakTo()}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                        <Text style={styles.barTitleStyle}>详细资料</Text>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_work.png')}
-                                       style={styles.imgRightStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                    </View>
+                    <TitleBarView onPress={()=>this._onBcakTo()} title="详细资料" />
                     <View style={{height:1,backgroundColor:'#cccccc'}}/>
 
                     <ScrollView showsVerticalScrollIndicator={true} style={{flex:1}}>

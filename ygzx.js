@@ -11,9 +11,7 @@ var {
     View,
     BackAndroid,
     TouchableHighlight,
-    TouchableOpacity,
     Navigator,
-    ListView,
     } = React;
 
 BackAndroid.addEventListener('hardwareBackPress', function () {
@@ -28,6 +26,7 @@ BackAndroid.addEventListener('hardwareBackPress', function () {
 });
 
 var _navigator;
+var TitleBarView = require('./title_bar.js');
 
 /**
  * 员工专享
@@ -49,24 +48,7 @@ var YGZXModule = React.createClass({
         if (route.id === 'ygzx') {
             return (
                 <View style={styles.container}>
-                    <View style={styles.barBox}>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}
-                            onPress={()=> this._onBcak()}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_back.png')} style={styles.imgStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                        <Text style={styles.barTitleStyle}>员工专享</Text>
-                        <TouchableHighlight
-                            underlayColor="rgb(210, 230, 255)"
-                            activeOpacity={0.5}>
-                            <View style={{flexDirection:'row',alignItems: 'center',justifyContent: 'center',}}>
-                                <Image source={require('./img/actionbar_work.png')} style={styles.imgRightStyleBar}/>
-                            </View>
-                        </TouchableHighlight>
-                    </View>
+                    <TitleBarView onPress={()=>this._onBcak()} title="员工专享" />
                     <View style={{height:1,backgroundColor:'#cccccc'}}/>
 
                     <TouchableHighlight
