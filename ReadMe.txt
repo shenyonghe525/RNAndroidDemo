@@ -17,6 +17,7 @@
 2 组件拖动(手势与动画)
 3 设置背景图片 -- 解决
   答案:http://blog.csdn.net/u010046908/article/details/50805177
+4 使用nivagator跳转页面时有明显卡顿
 
 
 
@@ -61,4 +62,46 @@ $ react-native --version
 4 真机测试
 
 $ adb reverse tcp:8081 tcp:8081（5.0以上）
+
+
+
+离线调试
+
+1 离线文件下载地址:http://localhost:8081/index.android.bundle?platform=android
+2 将代码拷贝到Android的assets目录的index.android.bundle.js文件下
+
+
+签名发布:
+1 生成keystore文件:
+  $ keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
+2 将签名文件拷贝到Android的app根目录下
+3 配置项目根目录下的/gradle.properties文件
+  MYAPP_RELEASE_STORE_FILE=my-release-key.keystore
+  MYAPP_RELEASE_KEY_ALIAS=my-key-alias
+  MYAPP_RELEASE_STORE_PASSWORD=*****
+  MYAPP_RELEASE_KEY_PASSWORD=*****
+4 配置android/app/build.gradle
+  android {
+      ...
+      defaultConfig { ... }
+      signingConfigs {
+          release {
+              storeFile file(MYAPP_RELEASE_STORE_FILE)
+              storePassword MYAPP_RELEASE_STORE_PASSWORD
+              keyAlias MYAPP_RELEASE_KEY_ALIAS
+              keyPassword MYAPP_RELEASE_KEY_PASSWORD
+          }
+      }
+      buildTypes {
+          release {
+              ...
+              signingConfig signingConfigs.release
+          }
+      }
+  }
+5 生成签名的APK
+  1 cd 项目目录/android
+  2 ./gradlew assembleRelease
+  3 生成APK android/app/build/outputs/apk/app-release.apk
+
 
