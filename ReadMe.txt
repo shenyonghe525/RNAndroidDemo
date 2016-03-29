@@ -24,26 +24,25 @@
 
 React-Native Mac环境开发环境搭建：
 
-1.安装Homebrew (osx的包管理工具): ruby -e "$(curl -fsSL
+1.安装Homebrew (osx的包管理工具): $ ruby -e "$(curl -fsSL
 https://raw.githubusercontent.com/Homebrew/install/master/install)”
 
-2.安装node.js : brew install node
-
-sudo chown -R $(whoami) /usr/local/share/systemtap
-
-brew link node
+2.安装node.js :$ brew install node
+               $ sudo chown -R $(whoami) /usr/local/share/systemtap
+               $ brew link node
 
 3. 安装watchman :
-brew install watchman
+$ brew install watchman
 
-4.安装flow : brew install flow
+4.安装flow :
+$ brew install flow
 
 5.设置npm淘宝镜像: (也可参考http://npm.taobao.org/)
 5.1 创建 .npmrc 文件(在用户主目录下)
 5.2 加入以下配置信息:registry = http://registry.npm.taobao.org
 
 6.安装React-Native :
-sudo npm install -g react-native-cli
+$ npm install -g react-native-cli
 
 
 1 创建React-Native项目HelloWorld:
@@ -62,6 +61,11 @@ $ react-native --version
 4 真机测试
 
 $ adb reverse tcp:8081 tcp:8081（5.0以上）
+
+5 react-native 升级以及版本管理
+  1 查询react-native的npm包得最新版本:$ npm info react-native
+  2 安装react-native的指定版本(可以是升级或者降级):$ npm install --save react-native@0.22.2
+  3 更新项目配置:$ react-native upgrade
 
 
 
