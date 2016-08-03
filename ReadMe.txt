@@ -24,8 +24,9 @@
 
 React-Native Mac环境开发环境搭建：
 
-1.安装Homebrew (osx的包管理工具): $ ruby -e "$(curl -fsSL
-https://raw.githubusercontent.com/Homebrew/install/master/install)”
+1.安装Homebrew (osx的包管理工具): 
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 
 2.安装node.js :$ brew install node
                $ sudo chown -R $(whoami) /usr/local/share/systemtap
